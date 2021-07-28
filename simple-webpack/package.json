@@ -1,0 +1,19 @@
+{
+  "name": "simple-webpack",
+  "version": "1.0.0",
+  "description": "",
+  "main": "bundle.js",
+  "dependencies": {
+    "@babel/core": "^7.14.8",
+    "@babel/parser": "^7.14.8",
+    "@babel/traverse": "^7.14.8"
+  },
+  "devDependencies": {
+    "@babel/preset-env": "^7.14.8"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
