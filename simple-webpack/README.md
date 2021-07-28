@@ -1,5 +1,6 @@
 # 实现webpack核心打包原理
-
+> 本项目适合：了解webpack大概运行机制，配置过webpack，想学习webpack bundle原理的人。
+> 如果对webpack不太了解，请到[webpack官方文档](https://webpack.docschina.org/)学习后再看本文。
 webpack是前端常用的打包构建工具，很多前端知道怎么配置但是并不了解原理是什么。webpack是一个基于事件流（生命周期）的构建工具，有以下几个核心概念：
 * 应用入口
 * 应用出口
