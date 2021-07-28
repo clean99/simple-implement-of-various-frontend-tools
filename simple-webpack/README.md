@@ -5,10 +5,10 @@
 webpack是前端常用的打包构建工具，很多前端知道怎么配置但是并不了解原理是什么。webpack是一个基于事件流（生命周期）的构建工具，有以下几个核心概念：
 * 应用入口
 * 应用出口
-* loader
-* plugin
-* 生命周期hooks
-* bundle
+* loader(解析css，sass，jsx，ts，tsx等非js文件时先用一系列loader转译为js文件)
+* 生命周期hooks(webpack运行过程中会有不同的生命周期，如：读取配置config.js，创建webpack实例，开始编译，编译结束，提交产物等)
+* plugin（webpack为上面的生命周期暴露钩子，plugin可以在这些钩子中注册回调函数，实现在不同webpack生命周期执行特定任务的功能）
+* bundle(贯穿webpack始终，从入口模块开始解析，收集模块依赖和模块代码，整理成依赖图后返回一个可以被浏览器运行的js文件)
 
 这个项目主要是关于bundle的，去掉loader等其他复杂概念，简单实现一个构建打包流程。
 要实现一个打包过程，需要实现以下几点：
