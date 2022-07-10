@@ -12,7 +12,7 @@
 
 ### expect函数的抽象过程
 
-首先我们index.js中有两个函数`sum`和`subtract`为我们要测试的函数：
+首先我们有两个函数`sum`和`subtract`为我们要测试的函数：
 
 ```js
 
