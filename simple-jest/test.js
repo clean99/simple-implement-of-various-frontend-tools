@@ -14,6 +14,6 @@ test('subtract 3 and 2 should equal to 1', () => {
     expect(subtract(3, 2)).toEqual(1);
 });
 
-test('sleepAndReturn function should return Hello eventually', async () => {
-    expect(await sleepAndReturn(1000, 'Hello')).toEqual('Hello');
+test('sleep 1000ms and resolve with Hello should return Hello eventually', async () => {
+    expect(await sleepAndReturn(1000, 'Hi')).toEqual('Hello');
 });
