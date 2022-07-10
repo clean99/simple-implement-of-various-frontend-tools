@@ -1,6 +1,6 @@
 # 通过实现一个超简单的Jest学习测试原理
 
-Jest是JavaScript测试必备的框架之一，很多人使用过他写js的单元测试，集成测试等。但是很少有人读过Jest的源码，了解过他的底层原理。要学习一个抽象最好的方法就是了解它的实现，这样你在遇到报错的时候就能根据原理分析原因，而不至于晕头转向。接下来我会实现一个尽可能简单Jest，去掉没必要的细节，帮助你学习它的运行原理，了解它的核心思想。
+Jest[Read more](https://jestjs.io/)是JavaScript测试必备的框架之一，很多人使用过他写js的单元测试，集成测试等。但是很少有人读过Jest的源码，了解过他的底层原理。要学习一个抽象最好的方法就是了解它的实现，这样你在遇到报错的时候就能根据原理分析原因，而不至于晕头转向。接下来我会实现一个尽可能简单Jest，去掉没必要的细节，帮助你学习它的运行原理，了解它的核心思想。
 
 ## 目录结构
 
@@ -13,6 +13,7 @@ Jest是JavaScript测试必备的框架之一，很多人使用过他写js的单�
 ### expect函数的抽象过程
 
 首先我们index.js中有两个函数`sum`和`subtract`为我们要测试的函数：
+
 ```js
 
 const sum = (a, b) => a - b;
@@ -164,7 +165,7 @@ subtract 3 and 2 should equal to 1
 
 ```
 
-### 兼容Async/Await异步编程
+### 兼容async/await异步编程
 
 现在我们已经可以测试同步函数了，那如果想要测试`async`函数呢？我们知道，`async`函数抛出的错误并不能被同步函数的`try...catch`捕捉到，因为同步函数读到异步函数后不是直接执行它，而是把它放到一个队列里，等同步函数执行完才可能执行这些异步函数。我们可以利用`await`来等待我们的`callback`执行完后再继续执行同步函数，这样我们就可以捕获到错误了。
 
@@ -175,6 +176,7 @@ const sleepAndReturn = async (time, text) => {
         setTimeout(() => resolve(text), time);
     });
 }
+
 
 async function test(name, callback) {
     try {
@@ -188,16 +190,17 @@ async function test(name, callback) {
     }
 }
 
-test('sleepAndReturn function should return Hello eventually', async () => {
-    expect(await sleepAndReturn(1000, 'Hello')).toEqual('Hello');
+test('sleep 1000ms and return Hello eventually', async () => {
+    expect(await sleepAndReturn(1000, 'Hi')).toEqual('Hello');
 });
 
 ```
 
 ```bash
 
-sleepAndReturn function should return Hello eventually
-✅ pass
+sleep 1000ms and return Hello eventually
+❌ Error: Hi is not equal to Hello
+Error: Hi is not equal to Hello
 
 ```
 
@@ -233,4 +236,8 @@ node --require ./test-setup.js test.js
 
 ### 总结
 
-以上就是jest最基本的实现原理，我们可以直接引入jest[Read more](https://jestjs.io/)然后使用这些函数，它会提供非常全面的工具帮助你完成测试。测试本质上就是为代码添加一些用例（或者说条件），如果用例失败则返回一些方便开发者debug的信息。我们从jest可以学到如何一步步抽象出一个通用的、用户友好的库。
+以上就是jest最基本的实现原理，我们可以直接引入jest然后使用这些函数，它会提供非常全面的工具帮助你完成测试。
+
+测试本质上就是为代码添加一些用例（或者说条件），如果用例失败则返回一些方便开发者debug的信息。
+
+我们从jest可以学到如何一步步抽象出一个通用的、用户友好的库。
